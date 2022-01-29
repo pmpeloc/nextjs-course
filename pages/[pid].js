@@ -3,6 +3,10 @@ import fs from 'fs/promises';
 import path from 'path';
 
 const ProductDetailPage = ({ loadedProduct }) => {
+  // if (!loadedProduct) {
+  //   return <p>Loading...</p>;
+  // }
+
   return (
     <>
       <h1>{loadedProduct.title}</h1>
@@ -31,12 +35,8 @@ export const getStaticProps = async (context) => {
 
 export const getStaticPaths = () => {
   return {
-    paths: [
-      { params: { pid: 'p1' } },
-      { params: { pid: 'p2' } },
-      { params: { pid: 'p3' } },
-    ],
-    fallback: false,
+    paths: [{ params: { pid: 'p1' } }],
+    fallback: 'blocking',
   };
 };
 
